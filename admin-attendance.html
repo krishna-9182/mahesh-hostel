@@ -1,0 +1,68 @@
+<!-- attendance.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Attendance</title>
+    <link rel="stylesheet" href="css/admin.css" />
+    <link rel="stylesheet" href="css/admin-attendance.css" />
+  </head>
+  <body>
+    <nav id="sidebar" class="sidebar">
+      <div class="sidebar-header"><h2>Admin</h2></div>
+      <ul class="sidebar-menu">
+        <li><a href="/admin.html">Dashboard</a></li>
+        <li><a href="/staff.html">Manage Staff</a></li>
+        <li><a href="/students.html">Manage Students</a></li>
+        <li><a href="/admin-attendance.html" class="active">Attendance</a></li>
+        <li><a href="/fees.html">Fees</a></li>
+        <li><a href="/meals.html">Meal Stats</a></li>
+        <li><a href="/settings.html">Settings</a></li>
+      </ul>
+    </nav>
+
+    <button id="menuBtn" class="menu-btn">☰</button>
+
+    <header class="admin-header">
+      <h1 class="title">Attendance Today</h1>
+      <button id="logoutBtn">Logout</button>
+    </header>
+
+    <main class="admin-container">
+      <section class="attendance-summary">
+        <div class="att-card present">
+          <h3>Present</h3>
+          <p id="presentCount">0</p>
+        </div>
+        <div class="att-card absent">
+          <h3>Absent</h3>
+          <p id="absentCount">0</p>
+        </div>
+      </section>
+
+      <section class="attendance-list-section">
+        <h2>Present Students</h2>
+        <ul id="presentList" class="student-list"></ul>
+      </section>
+
+      <section class="attendance-list-section">
+        <h2>Absent Students</h2>
+        <div style="margin-bottom: 12px">
+          <button id="exportAttendanceCSV" class="export-btn">
+            Export CSV
+          </button>
+          <button id="exportAttendanceExcel" class="export-btn green">
+            Export Excel
+          </button>
+        </div>
+        <ul id="absentList" class="student-list"></ul>
+      </section>
+    </main>
+
+    <div id="globalLoader" class="global-loader hidden">
+      <div class="spinner"></div>
+    </div>
+    <script type="module" src="js/attendance.js"></script>
+  </body>
+</html>

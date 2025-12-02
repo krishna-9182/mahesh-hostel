@@ -1,0 +1,82 @@
+<!-- fees.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Fees Management</title>
+    <link rel="stylesheet" href="css/admin.css" />
+    <link rel="stylesheet" href="css/fees-management.css" />
+  </head>
+  <body>
+    <nav id="sidebar" class="sidebar">
+      <div class="sidebar-header"><h2>Admin</h2></div>
+      <ul class="sidebar-menu">
+        <li><a href="/admin.html">Dashboard</a></li>
+        <li><a href="/staff.html">Manage Staff</a></li>
+        <li><a href="/students.html">Manage Students</a></li>
+        <li><a href="/attendance.html">Attendance</a></li>
+        <li><a href="/fees.html" class="active">Fees</a></li>
+        <li><a href="/meals.html">Meal Stats</a></li>
+        <li><a href="/settings.html">Settings</a></li>
+      </ul>
+    </nav>
+
+    <button id="menuBtn" class="menu-btn">☰</button>
+
+    <header class="admin-header">
+      <h1 class="title">Fees Management</h1>
+      <button id="logoutBtn">Logout</button>
+    </header>
+
+    <main class="admin-container">
+      <section class="filter-section">
+        <input
+          type="text"
+          id="searchInput"
+          class="search-box"
+          placeholder="Search by name or ET number"
+        />
+        <select id="roomFilter" class="filter-select">
+          <option value="all">All Room Types</option>
+          <option value="ac">AC</option>
+          <option value="Non ac">Non-AC</option>
+          <option value="Normal">Normal</option>
+          <option value="3">3 Sharing</option>
+        </select>
+        <select id="feeFilter" class="filter-select">
+          <option value="all">All Fees</option>
+          <option value="pending">Pending Only</option>
+          <option value="clear">No Pending</option>
+        </select>
+        <div>
+          <button id="exportFeesCSV" class="export-btn">Export CSV</button>
+          <button id="exportFeesExcel" class="export-btn green">
+            Export Excel
+          </button>
+        </div>
+      </section>
+
+      <section class="students-section">
+        <h2>Fees Summary</h2>
+        <table class="students-table" id="feesTable">
+          <thead>
+            <tr>
+              <th>Photo</th>
+              <th>Name</th>
+              <th>ET No</th>
+              <th>Room</th>
+              <th>Pending Fee</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
+
+    <div id="globalLoader" class="global-loader hidden">
+      <div class="spinner"></div>
+    </div>
+    <script type="module" src="js/fees.js"></script>
+  </body>
+</html>

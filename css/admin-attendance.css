@@ -1,0 +1,149 @@
+/*
+ * css/attendance.css - Page-specific styles for attendance.html
+ * Purpose: Structure the attendance summary cards and the student lists.
+ */
+
+/* Main Content Area */
+.admin-container {
+  padding: 16px; /* Ensure content is nicely spaced from edges */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between the summary cards and the lists */
+}
+
+/* Wide screen adjustments (Sidebar visible) */
+@media (min-width: 900px) {
+  .admin-container {
+    padding: 20px 24px;
+  }
+}
+
+/* --- Attendance Summary Cards Section --- */
+
+.attendance-summary {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(200px, 1fr)
+  ); /* Responsive grid for cards */
+  gap: 20px;
+}
+
+/* Individual Attendance Card Style */
+.att-card {
+  /* Inherit base card styles */
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.att-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.att-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  color: var(--muted);
+}
+
+.att-card p {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+/* Color Overrides for Present Card */
+.att-card.present {
+  border-left: 5px solid var(--success);
+}
+.att-card.present p {
+  color: var(--success);
+}
+
+/* Color Overrides for Absent Card */
+.att-card.absent {
+  border-left: 5px solid var(--danger);
+}
+.att-card.absent p {
+  color: var(--danger);
+}
+
+/* --- Attendance List Sections (Present/Absent) --- */
+
+.attendance-list-section {
+  /* This section contains the list and should visually act like a single card */
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden; /* Contains potential list item borders/shadows */
+}
+
+.attendance-list-section h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-top: 0;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/* Student List Styling */
+.student-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px; /* Minimal space between list items */
+}
+
+.student-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 10px;
+  border-bottom: 1px solid #f1f5f9;
+  background: #fff;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.student-list li:last-child {
+  border-bottom: none;
+}
+
+.student-list li:hover {
+  background: #f8faff; /* Light hover effect */
+}
+
+/* Styling for Export Buttons (Re-using styles from staff/students pages) */
+.export-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #e6eef8;
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background 0.2s ease;
+}
+
+.export-btn.green {
+  background: var(--success);
+  color: #fff;
+  border-color: var(--success);
+}
+.export-btn.green:hover {
+  background: #248843;
+}

@@ -1,0 +1,115 @@
+/*
+ * css/meal-stats.css - Page-specific styles for meals.html
+ * Purpose: Style the meal consumption chart and the detailed logs.
+ */
+
+/* Main Content Area */
+.admin-container {
+  padding: 16px; /* Ensure content is nicely spaced from edges */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between the chart section and the logs section */
+}
+
+/* Wide screen adjustments (Sidebar visible) */
+@media (min-width: 900px) {
+  .admin-container {
+    padding: 20px 24px;
+  }
+}
+
+/* --- Meal Chart Section Styling --- */
+
+.meal-chart-section {
+  /* Visually treat the chart as a card */
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  min-height: 350px; /* Ensure space for the chart */
+}
+
+.meal-chart-section h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-top: 0;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/* Chart Canvas */
+#mealChart {
+  width: 100% !important;
+  max-height: 100%;
+  flex-grow: 1; /* Allows the chart to fill the available space */
+}
+
+/* --- Detailed Meal Logs Section --- */
+
+.meal-list {
+  /* Visually treat the list section as a card */
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  overflow-x: hidden; /* Prevent horizontal overflow */
+  flex-grow: 1; /* Allows it to take up remaining height if placed next to other items */
+}
+
+.meal-list h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-top: 0;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/* Individual Meal Log List */
+#mealList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+#mealList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 10px;
+  border-bottom: 1px solid #f1f5f9;
+  background: #fff;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+#mealList li:last-child {
+  border-bottom: none;
+}
+
+#mealList li:hover {
+  background: #f8faff; /* Light hover effect */
+}
+
+/* Optional: Styling for log details within the list item (if structure were more complex) */
+.log-details {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.log-date {
+  font-weight: 600;
+}
+.log-count {
+  font-style: italic;
+  color: var(--accent-600);
+}

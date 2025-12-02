@@ -1,0 +1,128 @@
+/*
+ * css/settings.css - Page-specific styles for settings.html
+ * Purpose: Style the settings page layout and individual settings cards.
+ */
+
+/* Main Content Area Layout (Grid for settings panels) */
+.admin-container.settings-wrapper {
+  /* Set up the main grid layout for the settings page */
+  display: grid;
+  /* Mobile-first: single column layout */
+  grid-template-columns: 1fr;
+  gap: 24px; /* Space between the settings cards */
+  padding: 20px 16px;
+}
+
+/* Medium Screens: Two-column layout */
+@media (min-width: 768px) {
+  .admin-container.settings-wrapper {
+    /* Distribute cards into two columns */
+    grid-template-columns: 1fr 1fr;
+  }
+  /* Make the Account Details card span two columns on medium screens */
+  .settings-card:first-child {
+    grid-column: 1 / span 2;
+  }
+}
+
+/* Wide screen adjustments (Sidebar visible) */
+@media (min-width: 900px) {
+  .admin-container.settings-wrapper {
+    padding: 20px 24px;
+    /* Revert to single-column spanning to fill width effectively */
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* --- Individual Settings Card Styling --- */
+
+.settings-card {
+  /* Inherit base card styles */
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-card h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-top: 0;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/* Specific styling for Account Details card content */
+.settings-card:first-child .settings-item {
+  padding: 10px 0;
+  border-bottom: 1px dashed #f1f5f9;
+  font-size: 0.95rem;
+}
+
+.settings-card:first-child .settings-item:last-of-type {
+  border-bottom: none;
+}
+
+.settings-card:first-child strong {
+  display: inline-block;
+  width: 120px; /* Aligns the value text */
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* Styling for input elements in the forms */
+.settings-card label {
+  margin-top: 12px;
+  margin-bottom: 4px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.settings-card input[type="text"],
+.settings-card input[type="password"],
+.settings-card input[type="file"] {
+  /* Re-use global input styles, adjust margin */
+  margin-bottom: 10px;
+}
+
+/* Profile Photo Preview */
+.photo-preview {
+  max-width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 10px 0 20px 0;
+  border: 3px solid var(--accent);
+}
+
+/* Save Buttons */
+.save-btn {
+  /* Inherit base button styles, make full width */
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  width: 100%;
+  margin-top: 20px;
+  transition: background 0.2s ease;
+}
+
+.save-btn:hover {
+  background: var(--accent-600);
+}
+
+/* Specific style for Change Password button */
+.save-btn.red {
+  background: var(--danger);
+}
+
+.save-btn.red:hover {
+  background: #c93030;
+}

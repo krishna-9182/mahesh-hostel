@@ -1,5 +1,4 @@
-// config.js
-
+// js/config.js
 export const ENV = "production"; // "development" | "production"
 
 const CONFIG = {
@@ -7,7 +6,7 @@ const CONFIG = {
     API_BASE: "http://localhost:8000/api",
   },
   production: {
-    API_BASE: "https://hostel-erp-bef5.onrender.com/api",
+    API_BASE: "https://hostel.manabizz.in/api",
   },
 };
 

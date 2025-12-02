@@ -1,0 +1,149 @@
+/*
+ * css/manage-students.css - Page-specific styles for students.html
+ * Purpose: Structure the student management layout (Filters and Table)
+ */
+
+/* Main Content Area */
+.admin-container {
+  padding: 16px; /* Ensure content is nicely spaced from edges */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between the filter section and the student list */
+}
+
+/* Wide screen adjustments (Sidebar visible) */
+@media (min-width: 900px) {
+  .admin-container {
+    padding: 20px 24px;
+  }
+}
+
+/* --- Filter Section Styling --- */
+
+.filter-section {
+  /* Use flexbox for horizontal alignment of search, filter, and buttons */
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap onto the next line on small screens */
+  gap: 12px;
+  align-items: center;
+  padding: 16px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Search Input */
+.search-box {
+  /* Apply base input styles from admin.css */
+  flex: 1 1 250px; /* Allows the search box to take up significant space */
+  min-width: 180px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #e6eef8;
+  background: #fff;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+/* Room Type Filter Dropdown */
+.filter-select {
+  /* Apply base input styles from admin.css */
+  flex: 0 0 auto; /* Keep the select box size based on content */
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #e6eef8;
+  background: #fff;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+/* Export Buttons Container */
+.filter-section > div {
+  display: flex;
+  gap: 8px; /* Spacing between export buttons */
+  margin-left: auto; /* Pushes buttons to the right edge on wide screens */
+  flex-shrink: 0; /* Prevents buttons from shrinking */
+}
+
+/* Export Buttons (Re-using styles from staff.html for consistency) */
+.export-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #e6eef8;
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.export-btn.green {
+  background: var(--success);
+  color: #fff;
+  border-color: var(--success);
+}
+.export-btn.green:hover {
+  background: #248843;
+}
+
+/* --- Students List/Table Section Styling --- */
+
+.students-section {
+  /* This section contains the table and should visually act like a single card */
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  overflow-x: auto; /* Allows horizontal scrolling for the table on small screens */
+}
+
+.students-section h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+/* Table styling (Relies heavily on admin.css .table class) */
+.students-table {
+  /* Overrides the table's background to ensure it sits flush with the parent section's padding */
+  width: 100%;
+  min-width: 700px; /* Ensure table is wide enough to be readable even on small screens */
+  border-radius: 0; /* Let the parent section handle the radius */
+  box-shadow: none;
+  background: transparent;
+}
+
+/* Photo Column (Specific styling for table content) */
+.students-table th:first-child,
+.students-table td:first-child {
+  width: 60px; /* Set a specific width for the small photo column */
+  padding-left: 0; /* Adjust padding if needed */
+}
+
+.student-photo {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%; /* Make photos circular */
+  border: 2px solid #eef6ff;
+  display: block;
+}
+
+/* Fee Status Column (using status-pill from admin.css) */
+.pending-fee-cell .status-pill {
+  /* Ensure status pill is centered vertically if needed */
+  margin: auto;
+}
+
+/* Responsive adjustment for table columns */
+@media (max-width: 650px) {
+  /* Hide less critical columns on smaller devices */
+  .students-table th:nth-child(4), /* Phone */
+    .students-table td:nth-child(4) {
+    display: none;
+  }
+}
