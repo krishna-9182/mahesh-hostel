@@ -103,10 +103,10 @@ form.addEventListener("submit", async (e) => {
     // verify token quickly by calling owner/dashboard
     try {
       await fetchWithLoader(`${API_BASE.replace(/\/$/, "")}/owner/dashboard/`);
-      window.location.href = "/admin.html";
+      window.location.href = "./admin.html";
     } catch (verifyErr) {
       console.warn("Token verify failed:", verifyErr);
-      window.location.href = "/admin.html";
+      window.location.href = "./admin.html";
     }
   } catch (err) {
     console.error("Login error:", err);

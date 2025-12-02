@@ -8,7 +8,7 @@ import { API_BASE } from "./config.js";
   const token = getAccessToken();
   const role = getRole();
   if (!token || (role !== "owner" && role !== "admin")) {
-    window.location.href = "/admin-login.html";
+    window.location.href = "../admin-login.html";
   }
 })();
 
