@@ -1,0 +1,78 @@
+<!-- student-profile.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Student Profile</title>
+    <link rel="stylesheet" href="css/admin.css" />
+  </head>
+  <body>
+    <nav id="sidebar" class="sidebar">
+      <div class="sidebar-header"><h2>Admin</h2></div>
+      <ul class="sidebar-menu">
+        <li><a href="/admin.html">Dashboard</a></li>
+        <li><a href="/staff.html">Manage Staff</a></li>
+        <li><a href="/students.html">Manage Students</a></li>
+        <li><a href="/admin-attendance.html">Attendance</a></li>
+        <li><a href="/fees.html">Fees</a></li>
+        <li><a href="/meals.html">Meal Stats</a></li>
+        <li><a href="/settings.html">Settings</a></li>
+      </ul>
+    </nav>
+
+    <button id="menuBtn" class="menu-btn">☰</button>
+
+    <header class="admin-header">
+      <h1 class="title">Student Profile</h1>
+      <button id="logoutBtn">Logout</button>
+    </header>
+
+    <main class="admin-container" id="profileWrapper">
+      <section class="profile-header">
+        <img
+          id="studentImg"
+          class="profile-photo"
+          src="admin/assets/icons/profile.png"
+        />
+        <div class="profile-basic">
+          <h2 id="studentName">Loading...</h2>
+          <p id="etNumber"></p>
+          <p id="studentPhone"></p>
+        </div>
+      </section>
+
+      <section class="profile-info">
+        <h3>Parent & Room Details</h3>
+        <p><strong>Father Name:</strong> <span id="fatherName"></span></p>
+        <p><strong>Father Phone:</strong> <span id="fatherPhone"></span></p>
+        <p><strong>Room Type:</strong> <span id="roomType"></span></p>
+      </section>
+
+      <section class="profile-fees">
+        <h3>Fees Summary</h3>
+        <p><strong>Fees Paid:</strong> ₹<span id="feesPaid"></span></p>
+        <p><strong>Pending Fee:</strong> ₹<span id="pendingFee"></span></p>
+        <p><strong>UTR No:</strong> <span id="utrNumber"></span></p>
+      </section>
+
+      <section class="profile-attendance">
+        <h3>Attendance Today</h3>
+        <p><strong>Status:</strong> <span id="attStatus"></span></p>
+        <button id="markPresentBtn" class="save-btn" style="margin-top: 10px">
+          Mark Present
+        </button>
+      </section>
+
+      <section class="profile-meals">
+        <h3>Meal Stats (Hostel-Wide)</h3>
+        <ul id="mealList"></ul>
+      </section>
+    </main>
+
+    <div id="globalLoader" class="global-loader hidden">
+      <div class="spinner"></div>
+    </div>
+    <script type="module" src="js/student-profile.js"></script>
+  </body>
+</html>

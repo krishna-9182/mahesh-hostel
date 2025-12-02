@@ -1,0 +1,100 @@
+/*
+ * css/admin-dashboard.css - Page-specific styles for admin.html
+ * Purpose: Structure the dashboard layout (the main-container content)
+ */
+
+/* Main Dashboard Grid Layout */
+.admin-container {
+  /* Override for the main dashboard content area defined in admin.css */
+  /* Remove padding/margin from admin.css default to be set within the cards */
+  padding: 0;
+  margin: 14px auto;
+  width: calc(100% - 28px);
+  max-width: var(--max-width);
+
+  /* Use CSS Grid for the layout of the dashboard cards */
+  display: grid;
+  /* Mobile-first: single column layout */
+  grid-template-columns: 1fr;
+  gap: 20px; /* Spacing between cards */
+}
+
+/* Medium screens: two-column layout */
+@media (min-width: 650px) {
+  .admin-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Large screens: three-column layout, ensuring max-width is respected */
+@media (min-width: 1200px) {
+  .admin-container {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0 14px; /* Add back padding for the edges if needed */
+    width: 100%;
+  }
+}
+
+/* Wide screen layout adjustment from admin.css */
+@media (min-width: 900px) {
+  .admin-container {
+    /* Pushes content right of the permanently visible sidebar */
+    width: calc(100% - 30px);
+    margin: 14px 14px 14px 14px; /* Top, Right, Bottom, Left */
+  }
+}
+
+/* Dashboard Cards (Applying and extending the base .card style from admin.css) */
+.dash-card {
+  /* Inherit base card styles */
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  min-height: 250px; /* Ensure a minimum height for better visual balance */
+}
+
+/* Card Titles */
+.dash-card h2 {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--text);
+  margin: 0 0 15px 0; /* Add bottom margin for separation from content */
+  border-bottom: 1px solid #f1f5f9; /* Subtle separator */
+  padding-bottom: 8px;
+}
+
+/* Chart Canvas Styling */
+.dash-card canvas {
+  /* Allow the canvas to fill the remaining space in the card */
+  width: 100% !important;
+  max-height: 100%;
+  flex-grow: 1; /* Allows chart to fill vertical space */
+}
+
+/* Styling for specific chart sections if needed, though they mostly rely on JS chart library */
+#attChart,
+#feesChart,
+#roomChart {
+  /* Ensure the canvas element itself is responsive inside the card */
+  max-width: 100%;
+  height: auto;
+}
+
+/* Accessibility and Hover effects (if any dashboard metrics were present) */
+.dash-card:hover {
+  box-shadow: var(--shadow-lg);
+  transition: box-shadow 0.3s ease;
+}
+
+/* Specific styling for the row containing Attendance (to span full width on medium screens) */
+/* If you wanted the first chart (Attendance) to span two columns on medium screens: */
+/*
+@media (min-width: 650px) and (max-width: 1199px) {
+    .admin-container .dash-card:first-child {
+        grid-column: 1 / span 2;
+    }
+}
+*/

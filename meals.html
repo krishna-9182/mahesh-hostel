@@ -1,23 +1,23 @@
-<!-- admin.html -->
+<!-- meals.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Admin Dashboard</title>
+    <title>Meal Stats</title>
     <link rel="stylesheet" href="css/admin.css" />
-    <link rel="stylesheet" href="css/admin-dashboard.css">
+    <link rel="stylesheet" href="css/meal-stats.css" />
   </head>
   <body>
     <nav id="sidebar" class="sidebar">
       <div class="sidebar-header"><h2>Admin</h2></div>
       <ul class="sidebar-menu">
-        <li><a href="/admin.html" class="active">Dashboard</a></li>
+        <li><a href="/admin.html">Dashboard</a></li>
         <li><a href="/staff.html">Manage Staff</a></li>
         <li><a href="/students.html">Manage Students</a></li>
-        <li><a href="/attendance.html">Attendance</a></li>
+        <li><a href="/admin-attendance.html">Attendance</a></li>
         <li><a href="/fees.html">Fees</a></li>
-        <li><a href="/meals.html">Meal Stats</a></li>
+        <li><a href="/meals.html" class="active">Meal Stats</a></li>
         <li><a href="/settings.html">Settings</a></li>
       </ul>
     </nav>
@@ -25,31 +25,25 @@
     <button id="menuBtn" class="menu-btn">☰</button>
 
     <header class="admin-header">
-      <h1 class="title">Hostel Admin Dashboard</h1>
+      <h1 class="title">Meal Stats (Last 7 Days)</h1>
       <button id="logoutBtn">Logout</button>
     </header>
 
     <main class="admin-container">
-      <section class="dash-card">
-        <h2>Attendance Trend (Last 7 Days)</h2>
-        <canvas id="attChart" width="400" height="250"></canvas>
+      <section class="meal-chart-section">
+        <h2>Meal Consumption Trend</h2>
+        <canvas id="mealChart" width="400" height="250"></canvas>
       </section>
 
-      <section class="dash-card">
-        <h2>Fees Summary</h2>
-        <canvas id="feesChart" width="400" height="250"></canvas>
-      </section>
-
-      <section class="dash-card">
-        <h2>Room Type Distribution</h2>
-        <canvas id="roomChart" width="400" height="250"></canvas>
+      <section class="meal-list">
+        <h2>Detailed Meal Logs</h2>
+        <ul id="mealList"></ul>
       </section>
     </main>
 
     <div id="globalLoader" class="global-loader hidden">
       <div class="spinner"></div>
     </div>
-
-    <script type="module" src="js/dashboard.js"></script>
+    <script type="module" src="js/meals.js"></script>
   </body>
 </html>

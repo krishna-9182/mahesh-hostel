@@ -1,0 +1,79 @@
+<!-- students.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Manage Students</title>
+    <link rel="stylesheet" href="css/admin.css" />
+    <link rel="stylesheet" href="css/manage-students.css" />
+  </head>
+  <body>
+    <nav id="sidebar" class="sidebar">
+      <div class="sidebar-header"><h2>Admin</h2></div>
+      <ul class="sidebar-menu">
+        <li><a href="/admin.html">Dashboard</a></li>
+        <li><a href="/staff.html">Manage Staff</a></li>
+        <li><a href="/students.html" class="active">Manage Students</a></li>
+        <li><a href="/admin-attendance.html">Attendance</a></li>
+        <li><a href="/fees.html">Fees</a></li>
+        <li><a href="/meals.html">Meal Stats</a></li>
+        <li><a href="/settings.html">Settings</a></li>
+      </ul>
+    </nav>
+
+    <button id="menuBtn" class="menu-btn">☰</button>
+
+    <header class="admin-header">
+      <h1 class="title">Manage Students</h1>
+      <button id="logoutBtn">Logout</button>
+    </header>
+
+    <main class="admin-container">
+      <section class="filter-section">
+        <input
+          type="text"
+          id="searchInput"
+          class="search-box"
+          placeholder="Search by name or ET number..."
+        />
+        <select id="roomFilter" class="filter-select">
+          <option value="all">All Room Types</option>
+          <option value="ac">AC</option>
+          <option value="Non ac">Non-AC</option>
+          <option value="Normal">Normal</option>
+          <option value="3">3 Sharing</option>
+        </select>
+        <div>
+          <button id="exportStudentsCSV" class="export-btn">Export CSV</button>
+          <button id="exportStudentsExcel" class="export-btn green">
+            Export Excel
+          </button>
+        </div>
+      </section>
+
+      <section class="students-section">
+        <h2>All Students</h2>
+        <table class="students-table" id="studentsTable">
+          <thead>
+            <tr>
+              <th>Photo</th>
+              <th>Name</th>
+              <th>ET No</th>
+              <th>Phone</th>
+              <th>Room</th>
+              <th>Pending Fee</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
+
+    <div id="globalLoader" class="global-loader hidden">
+      <div class="spinner"></div>
+    </div>
+
+    <script type="module" src="js/students.js"></script>
+  </body>
+</html>

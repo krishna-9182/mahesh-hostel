@@ -1,0 +1,47 @@
+<!-- admin-login.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="css/login.css" />
+  </head>
+  <body>
+    <main class="login-page">
+      <div class="card">
+        <h1>Hostel Admin</h1>
+        <p class="muted">Sign in with your admin credentials</p>
+
+        <form id="loginForm" autocomplete="on">
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" required autofocus />
+
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" required />
+
+          <div class="row between">
+            <label class="remember">
+              <input id="remember" type="checkbox" />
+              Remember me
+            </label>
+            <a id="forgot" href="#">Forgot?</a>
+          </div>
+
+          <div id="error" class="error" role="alert" aria-live="polite"></div>
+
+          <button id="submitBtn" type="submit" class="btn">Sign in</button>
+        </form>
+
+        <div class="tiny muted" style="margin-top: 12px; font-size: 0.85rem">
+          Use admin credentials. Tokens stored in session/local storage.
+        </div>
+      </div>
+    </main>
+
+    <div id="globalLoader" class="global-loader hidden">
+      <div class="spinner"></div>
+    </div>
+    <script type="module" src="js/admin-login.js"></script>
+  </body>
+</html>
