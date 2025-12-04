@@ -24,15 +24,26 @@ logoutBtn.addEventListener("click", () => {
 menuBtn.addEventListener("click", () => sidebar.classList.toggle("active"));
 
 async function loadStaff() {
-  staffTableBody.innerHTML = `<tr><td colspan="4" style="padding:20px;text-align:center;">Loading...</td></tr>`;
+  staffTableBody.innerHTML = `<tr><td colspan="9" style="padding:20px;text-align:center;">Loading...</td></tr>`;
+
   const data = await fetchWithLoader(`${API_BASE}/owner/dashboard/`);
   const staff = data.staff || [];
+
   staffTableBody.innerHTML = "";
+
   staff.forEach((s) => {
     const tr = document.createElement("tr");
-    tr.innerHTML = `<td>${s.name}</td><td>${s.role}</td><td>${
-      s.phone_number || ""
-    }</td><td>₹${s.salary || 0}</td>`;
+    tr.innerHTML = `
+      <td>${s.name}</td>
+      <td>${s.role || "-"}</td>
+      <td>${s.phone || ""}</td>
+      <td>${s.address || ""}</td>
+      <td>${s.bank_name || ""}</td>
+      <td>${s.ifsc || ""}</td>
+      <td>${s.account_no || ""}</td>
+      <td>₹${s.salary || 0}</td>
+      <td>${s.date_of_joining || ""}</td>
+    `;
     staffTableBody.appendChild(tr);
   });
 }
