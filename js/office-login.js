@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       const res = await fetch(
-        "https://hostel-erp-bef5.onrender.com/api/login/",
+        "https://hostel.manabizz.in/api/login/",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
