@@ -24,7 +24,7 @@ async function fetchDashboard() {
     }
 
     const res = await fetch(
-      "https://hostel-erp-bef5.onrender.com/api/office/dashboard",
+      "https://hostel.manabizz.in/api/office/dashboard",
       {
         method: "GET",
         headers: {
@@ -54,7 +54,7 @@ async function fetchDashboard() {
     showMessage("error", err.message || "Network error");
   }
 }
-
+window.fetchDashboard = fetchDashboard;
 // Render dashboard
 function renderDashboard(data) {
   dashboardData = data;

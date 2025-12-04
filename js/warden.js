@@ -6,8 +6,8 @@ let html5Qrcode;
 let scanning = false;
 
 // API URLs
-const SCAN_API = "https://hostel-erp-bef5.onrender.com/api/scan/qr/";
-const MEAL_API = "https://hostel-erp-bef5.onrender.com/api/meal/action/";
+const SCAN_API = "https://hostel.manabizz.in/api/scan/qr/";
+const MEAL_API = "https://hostel.manabizz.in/api/meal/action/";
 
 // Token
 const ACCESS_TOKEN = localStorage.getItem("access_token");
@@ -156,7 +156,7 @@ async function loadStats() {
 
   try {
     const response = await fetch(
-      "https://hostel-erp-bef5.onrender.com/api/warden/meal-stats/",
+      "https://hostel.manabizz.in/api/warden/meal-stats/",
       {
         method: "GET",
         headers: {

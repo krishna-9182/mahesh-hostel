@@ -38,7 +38,7 @@ export async function approve(id) {
   if (!token) return;
 
   try {
-    const res = await fetch(`https://hostel-erp-bef5.onrender.com/api/office/student/approve/${id}/`, {
+    const res = await fetch(`https://hostel.manabizz.in/api/office/student/approve/${id}/`, {
       method: "POST",
       headers: { Authorization: token.startsWith("Bearer") ? token : `Bearer ${token}` },
     });
@@ -92,7 +92,7 @@ export function editStudent(id, students) {
     };
 
     try {
-      const putRes = await fetch(`https://hostel-erp-bef5.onrender.com/api/office/student/edit/${id}/`, {
+      const putRes = await fetch(`https://hostel.manabizz.in/api/office/student/edit/${id}/`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -137,7 +137,7 @@ export function deleteStudent(id) {
     if (!token) return;
 
     try {
-      const res = await fetch(`https://hostel-erp-bef5.onrender.com/api/office/student/delete/${id}/`, {
+      const res = await fetch(`https://hostel.manabizz.in/api/office/student/delete/${id}/`, {
         method: "DELETE",
         headers: {
           Authorization: token.startsWith("Bearer") ? token : `Bearer ${token}`,
