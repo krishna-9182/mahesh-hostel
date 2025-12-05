@@ -112,6 +112,7 @@
                 <th>Account No</th>
                 <th>Salary</th>
                 <th>Joining Date</th>
+                <th>Action</th>
               </tr>
             </thead>
           <tbody></tbody>
@@ -121,7 +122,81 @@
 
     <div id="globalLoader" class="global-loader hidden">
       <div class="spinner"></div>
-    </div>
+    </div> 
+
+
+
+    <!-- Edit Staff Modal -->
+<!-- Edit Staff Modal -->
+<div id="editModal" class="modal hidden">
+  <div class="modal-content">
+    <h2>Edit Staff</h2>
+    <form id="editStaffForm">
+      <input type="hidden" id="edit_id">
+
+
+      <div class="form-group">
+        <label>Full Name</label>
+        <input id="edit_name" required />
+      </div>
+
+      <div class="form-group">
+        <label>Address</label>
+        <input id="edit_address" required />
+      </div>
+
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input id="edit_phone" required />
+      </div>
+
+      <div class="form-group">
+        <label>Bank Account Number</label>
+        <input id="edit_account" required />
+      </div>
+
+      <div class="form-group">
+        <label>IFSC Code</label>
+        <input id="edit_ifsc" required />
+      </div>
+
+      <div class="form-group">
+        <label>Bank Name</label>
+        <input id="edit_bank" required />
+      </div>
+
+      <div class="form-group">
+        <label>Salary</label>
+        <input id="edit_salary" type="number" required />
+      </div>
+
+     
+
+      <div class="form-group">
+        <label>Role</label>
+        <select id="edit_role" required>
+          <option value="warden">Warden</option>
+          <option value="cook">Cook</option>
+          <option value="cleaner">Cleaner</option>
+        </select>
+      </div>
+
+      <button type="submit" class="save-btn">Save</button>
+      <button type="button" class="close-btn" id="closeEdit">Cancel</button>
+    </form>
+  </div>
+</div>
+
+
+<!-- Delete Confirm Modal -->
+<div id="deleteModal" class="modal hidden">
+  <div class="modal-content small">
+    <h3>Are you sure you want to delete this staff?</h3>
+    <button id="confirmDelete" class="delete-confirm">Yes, Delete</button>
+    <button id="cancelDelete" class="close-btn">Cancel</button>
+  </div>
+</div>
+
     <script type="module" src="js/staff.js"></script>
   </body>
 </html>

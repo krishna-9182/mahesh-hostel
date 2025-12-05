@@ -1,34 +1,42 @@
-/*
- * css/manage-staff.css - Page-specific styles for staff.html
- * Purpose: Structure the staff management layout (Form and Table)
- */
+/* ------------------------------------------------ */
+/* EXISTING CSS (unchanged) */
+/* ------------------------------------------------ */
 
-/* Main Container Layout (Grid for Form and Table) */
 .admin-container {
-  /* Set up the main grid layout for the staff page */
   display: grid;
-  /* Mobile-first: single column for both form and list, with space around */
   grid-template-columns: 1fr;
-  gap: 24px; /* Space between the two main sections */
-  padding: 16px; /* Padding inside the main content area */
+  gap: 24px;
+  padding: 16px;
 }
 
-/* Medium Screens: Two-column layout where the form is narrower */
 @media (min-width: 900px) {
   .admin-container {
-    /* On screens where the sidebar is visible, adjust column layout */
-    /* Form section takes ~35% and List section takes ~65% */
     grid-template-columns: 1fr 2fr;
-    max-width: none; /* Let the body padding handle the sidebar gap */
+    max-width: none;
     width: 100%;
     padding: 20px 24px;
   }
+} 
+/* Make buttons inside the Action column aligned vertically and spaced */
+.students-table td:last-child {
+  display: flex;             /* Use flexbox */
+  flex-direction: column;    /* Stack buttons vertically */
+  justify-content: center;   /* Vertically center the buttons */
+  align-items: center;       /* Horizontally center the buttons */
+  gap: 6px;                  /* Space between Edit and Delete buttons */
+  padding: 8px;      
+  cursor: pointer;         /* Optional: add padding for better spacing */
 }
 
-/* --- Form Section Styling --- */
+/* Optional: make buttons full width inside table */
+.students-table td:last-child .edit-btn,
+.students-table td:last-child .delete-btn {
+  width: 90%;                /* Adjust width as needed */
+  max-width: 120px;          /* Optional: prevent too wide buttons */
+}
+
 
 .form-section {
-  /* Inherit base card styles for a clean container around the form */
   background: var(--surface);
   border-radius: var(--radius);
   padding: 20px;
@@ -45,20 +53,16 @@
   border-bottom: 1px solid #f1f5f9;
 }
 
-/* Grouping for form elements (Label + Input) */
 #addStaffForm .form-group {
   margin-bottom: 16px;
 }
 
-/* Ensure all inputs and selects use the global styles and have bottom margin */
 #addStaffForm input,
 #addStaffForm select {
-  margin-top: 4px; /* Small gap between label and input */
+  margin-top: 4px;
 }
 
-/* Submit Button Styling */
 .submit-btn {
-  /* Inherit base button styles */
   background: var(--accent);
   color: #fff;
   border: none;
@@ -66,7 +70,7 @@
   border-radius: 10px;
   cursor: pointer;
   font-weight: 700;
-  width: 100%; /* Full width button in the form section */
+  width: 100%;
   margin-top: 10px;
   transition: background 0.2s ease;
 }
@@ -74,8 +78,6 @@
 .submit-btn:hover {
   background: var(--accent-600);
 }
-
-/* --- Staff List/Table Section Styling --- */
 
 .staff-list-section {
   display: flex;
@@ -90,9 +92,7 @@
   margin-bottom: 16px;
 }
 
-/* Export Buttons Styling */
 .export-btn {
-  /* Base style for utility buttons */
   display: inline-flex;
   align-items: center;
   padding: 8px 12px;
@@ -119,25 +119,155 @@
   background: #248843;
 }
 
-/* Table container styling to apply the 'card' look to the table itself */
+/* ------------------------------------------------ */
+/* Table Styling */
+/* ------------------------------------------------ */
+
 .students-table {
-  /* Inherit global table styles from admin.css */
-  /* Add border-radius/shadow explicitly if needed, but table styles should handle it */
+  width: 100%;
+  border-collapse: collapse; /* merge borders */
   box-shadow: var(--shadow-sm);
-  flex-grow: 1; /* Allows the table to fill vertical space */
+  background: #fff;
+  font-family: Arial, sans-serif;
 }
 
-/* Table-specific overrides to ensure clean appearance */
 .students-table thead th {
-  /* Match the accent color feel if desired, otherwise keep admin.css default */
   background: #eef3fb;
+  font-weight: 600;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  text-align: left;
+  border-radius: 6px 6px 0 0; /* optional rounded top corners */
 }
 
-/* Responsive adjustment for table columns on very small screens */
+.students-table tbody td {
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+}
+
+.students-table tbody tr:hover {
+  background-color: #f1f5f9;
+  transition: background 0.2s ease-in-out;
+}
+
 @media (max-width: 500px) {
   .students-table th:nth-child(4),
   .students-table td:nth-child(4) {
-    /* Hide salary column on tiny screens for better readability */
     display: none;
   }
+}
+
+/* ------------------------------------------------ */
+/* Modal Styling */
+/* ------------------------------------------------ */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55); /* dark overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 22px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+  animation: popup 0.25s ease-out;
+}
+
+.modal-content.small {
+  max-width: 350px;
+}
+
+@keyframes popup {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.save-btn {
+  background: #2563eb;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.close-btn {
+  background: #e2e8f0;
+  color: #111;
+  padding: 9px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.delete-confirm {
+  background: #dc2626;
+  color: white;
+  padding: 10px 16px;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* ------------------------------------------------ */
+/* Edit & Delete Buttons inside Table */
+/* ------------------------------------------------ */
+
+.action-btn {
+  padding: 6px 12px;
+  border-radius: 8px; /* Rounded edges */
+  font-size: 13px;
+  cursor: pointer;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+.edit-btn {
+  background-color: #3b82f6;
+}
+
+.edit-btn:hover {
+  background-color: #2563eb;
+  transform: scale(1.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.delete-btn {
+  background-color: #ef4444;
+}
+
+.delete-btn:hover {
+  background-color: #dc2626;
+  transform: scale(1.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Small spacing between buttons */
+.students-table .edit-btn + .delete-btn {
+  margin-left: 6px;
 }
