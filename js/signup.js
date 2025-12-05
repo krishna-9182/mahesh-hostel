@@ -89,8 +89,11 @@ function isValidPhone(phone) {
   return /^\d{7,15}$/.test(phone);
 }
 function isValidET(et) {
-  return /^ET\d{4,8}$/i.test(et);
+  const onlyDigits = /^\d+$/; // Accept pure digits
+  const etFormat = /^ET\d{2}-\d+$/; // ET + exactly 2 digits + - + digits
+  return onlyDigits.test(et) || etFormat.test(et);
 }
+
 function isStrongPassword(pw) {
   return /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/.test(pw);
 }
@@ -126,7 +129,11 @@ function validateStudentPhone() {
 function validateET() {
   const v = sanitize($("et_number").value);
   if (!v) setError("et_number", "ET required.");
-  else if (!isValidET(v)) setError("et_number", "ET format like ET20250067.");
+  else if (!isValidET(v))
+    setError(
+      "et_number",
+      "Enter digits only OR ET format like ET25-1277 (two digits after ET)."
+    );
   else setError("et_number", "");
   return isValidET(v);
 }
