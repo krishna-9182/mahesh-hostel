@@ -12,7 +12,9 @@ const MEAL_API = "https://hostel.manabizz.in/api/meal/action/";
 // Token
 const ACCESS_TOKEN = localStorage.getItem("access_token");
 
-// Start scanner
+// -------------------------
+// START SCANNER
+// -------------------------
 startBtn.onclick = async () => {
   if (scanning) return;
 
@@ -40,7 +42,9 @@ startBtn.onclick = async () => {
   }
 };
 
-// Stop scanner
+// -------------------------
+// STOP SCANNER
+// -------------------------
 stopBtn.onclick = async () => {
   if (!scanning) return;
 
@@ -50,7 +54,9 @@ stopBtn.onclick = async () => {
   resultBox.innerHTML = "Scanner stopped.";
 };
 
-// Handle scan result
+// -------------------------
+// HANDLE SCAN RESULT
+// -------------------------
 async function handleScan(message) {
   let qrToken = message;
 
@@ -59,7 +65,6 @@ async function handleScan(message) {
     qrToken = parsed.qr_token;
   } catch {}
 
-  // Call scan API
   resultBox.innerHTML = "<b>Fetching student info...</b>";
 
   const res = await fetch(SCAN_API, {
@@ -81,7 +86,9 @@ async function handleScan(message) {
   displayStudent(data, qrToken);
 }
 
-// Display UI
+// -------------------------
+// DISPLAY STUDENT CARD
+// -------------------------
 function displayStudent(data, qrToken) {
   resultBox.innerHTML = `
     <div class="student-card">
@@ -91,9 +98,9 @@ function displayStudent(data, qrToken) {
         <p>ET: ${data.et_number}</p>
 
         <div class="meal-buttons">
-          ${mealButton("BREAKFAST", data.breakfast, qrToken)}
-          ${mealButton("LUNCH", data.lunch, qrToken)}
-          ${mealButton("DINNER", data.dinner, qrToken)}
+          ${mealButton("BREAKFAST", data.breakfast)}
+          ${mealButton("LUNCH", data.lunch)}
+          ${mealButton("DINNER", data.dinner)}
         </div>
       </div>
     </div>
@@ -102,27 +109,90 @@ function displayStudent(data, qrToken) {
   attachMealEvents(qrToken);
 }
 
-// Create meal button based on backend state
-function mealButton(label, state, qrToken) {
+// -------------------------
+// GENERATE MEAL BUTTON
+// -------------------------
+function mealButton(label, state) {
   const colors = {
-    null: "#2563eb", // Not taken → Blue
-    true: "#1abc9c", // Taken → Green
-    false: "#e74c3c", // Blocked → Red
+    null: "#2563eb",   // Blue: Not Taken
+    true: "#1abc9c",   // Green: Taken
+    false: "#e74c3c"   // Red: Blocked
   };
-  return `<button class="meal-btn" 
-      style="background:${colors[state]}">
+
+  return `
+    <button class="meal-btn" style="background:${colors[state]}">
       ${label}
-    </button>`;
+    </button>
+  `;
 }
 
-// Attach actions
+// -------------------------
+// CONFIRMATION MODAL
+// -------------------------
+let confirmMealType = null;
+let confirmQrToken = null;
+
+function openConfirmPopup(mealType, qrToken) {
+  confirmMealType = mealType;
+  confirmQrToken = qrToken;
+
+  document.getElementById("confirmText").innerText =
+    `Confirm ${mealType.toUpperCase()}?`;
+
+  document.getElementById("confirmModal").style.display = "flex";
+}
+
+document.getElementById("confirmYes").onclick = () => {
+  document.getElementById("confirmModal").style.display = "none";
+  mealAction(confirmMealType, confirmQrToken);
+};
+
+document.getElementById("confirmNo").onclick = () => {
+  document.getElementById("confirmModal").style.display = "none";
+};
+
+// -------------------------
+// INFO MODAL (NO ACTION)
+// -------------------------
+function openInfoPopup(message) {
+  document.getElementById("infoText").innerHTML = `❌ ${message}`;
+  document.getElementById("infoModal").style.display = "flex";
+}
+
+document.getElementById("infoClose").onclick = () => {
+  document.getElementById("infoModal").style.display = "none";
+};
+
+// -------------------------
+// ADD EVENT LISTENERS
+// -------------------------
 function attachMealEvents(qrToken) {
   document.querySelectorAll(".meal-btn").forEach((btn) => {
-    btn.onclick = () => mealAction(btn.innerText.toLowerCase(), qrToken);
+    btn.onclick = () => {
+      const mealType = btn.innerText.toLowerCase();
+      const bgColor = btn.style.background;
+
+      // GREEN = Already Taken
+      if (bgColor === "rgb(26, 188, 156)" || bgColor === "#1abc9c") {
+        openInfoPopup("Meal already taken!");
+        return;
+      }
+
+      // RED = Blocked
+      if (bgColor === "rgb(231, 76, 60)" || bgColor === "#e74c3c") {
+        openInfoPopup("Meal is blocked!");
+        return;
+      }
+
+      // BLUE = Allowed → Show confirmation
+      openConfirmPopup(mealType, qrToken);
+    };
   });
 }
 
-// Perform meal update
+// -------------------------
+// UPDATE MEAL API CALL
+// -------------------------
 async function mealAction(mealType, qrToken) {
   resultBox.innerHTML += `<p>Updating ${mealType}...</p>`;
 
@@ -140,20 +210,25 @@ async function mealAction(mealType, qrToken) {
 
   const data = await res.json();
   console.log(data);
-  handleScan(qrToken);
-} 
 
-// Logout
+  handleScan(qrToken);
+}
+
+// -------------------------
+// LOGOUT
+// -------------------------
 function logout() {
   localStorage.clear();
   window.location.href = "./office-dashboard.html";
-} 
+}
+
+// -------------------------
+// STATS POPUP
+// -------------------------
 document.getElementById("viewBtn").addEventListener("click", loadStats);
 document.getElementById("closeModal").addEventListener("click", closeStatsModal);
 
 async function loadStats() {
-  
-
   try {
     const response = await fetch(
       "https://hostel.manabizz.in/api/warden/meal-stats/",
@@ -173,6 +248,7 @@ async function loadStats() {
 
     const data = await response.json();
     displayStats(data);
+
   } catch (error) {
     console.error(error);
     alert("Error loading stats");
@@ -181,12 +257,9 @@ async function loadStats() {
 
 function displayStats(data) {
   const tbody = document.getElementById("statsBody");
-  tbody.innerHTML = ""; // clear old data
+  tbody.innerHTML = "";
 
-  const rows = [
-    data.today,
-    data.yesterday
-  ];
+  const rows = [data.today, data.yesterday];
 
   rows.forEach(item => {
     const row = `
@@ -195,8 +268,7 @@ function displayStats(data) {
         <td>${item.breakfast_count}</td>
         <td>${item.lunch_count}</td>
         <td>${item.dinner_count}</td>
-      </tr>
-    `;
+      </tr>`;
     tbody.innerHTML += row;
   });
 
@@ -209,9 +281,8 @@ function openStatsModal() {
 
 function closeStatsModal() {
   document.getElementById("statsModal").style.display = "none";
-} 
+}
+
 document.getElementById("attendenceBtn").addEventListener("click", () => {
   window.location.href = "attendence.html";
 });
-
-
