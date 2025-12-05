@@ -73,6 +73,15 @@ h2 {
   margin: 0;
   margin-top: 3px;
 }
+.pending-student-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid #f72585;
+    margin-left: 10px;
+    box-shadow: 0 0 6px rgba(247, 37, 133, 0.4);
+}
 
 .pending-item {
   display: flex;
