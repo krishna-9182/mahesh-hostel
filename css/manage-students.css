@@ -147,3 +147,28 @@
     display: none;
   }
 }
+
+/* Base (Mobile First) */
+.student-img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+
+/* Tablets (≥ 600px) */
+@media (min-width: 600px) {
+  .student-img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* Laptops / Desktops (≥ 992px) */
+@media (min-width: 992px) {
+  .student-img {
+    width: 60px;
+    height: 60px;
+  }
+}
