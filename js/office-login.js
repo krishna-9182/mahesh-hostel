@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("officeLoginForm");
   const msg = document.getElementById("msg");
   const submit = document.getElementById("submitBtn");
-
+  console.log("hi");
   function showMessage(type, text) {
     const icon = type === "error" ? "❌" : "✅";
     msg.innerHTML = `<div class="alert ${type}">${icon} ${text}</div>`;
@@ -63,15 +63,17 @@ document.addEventListener("DOMContentLoaded", () => {
       // 🔥 ROLE-BASED REDIRECTION
       // -----------------------------------------
       setTimeout(() => {
-        if (data.role === "officer") {
-          window.location.href = "office-dashboard.html";
+        if (data.role === "student") {
+          window.location.href = "student-dashboard.html";
         } else if (data.role === "warden") {
           window.location.href = "warden-dashboard.html";
         } else if (data.role === "owner") {
           window.location.href = "admin.html"; // ✔ owner → admin page
+        } else if (data.role === "office") {
+          // fallback") {
+          window.location.href = "office-dashboard.html";
         } else {
-          // fallback
-          window.location.href = "student-login.html";
+          window.location.href = "InvalidUserPage.html";
         }
       }, 600);
     } catch (err) {

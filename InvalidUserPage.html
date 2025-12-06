@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Authentication Error — Access Denied</title>
+    <meta
+      name="description"
+      content="You were not recognized by the ERP. Please check your credentials and try again or go back to the home page."
+    />
+    <style>
+      :root {
+        --bg: #f7fafc;
+        --card: #ffffff;
+        --muted: #6b7280;
+        --accent: #ef4444;
+        --accent-2: #374151;
+        --glass: rgba(255, 255, 255, 0.6);
+        --radius: 14px;
+        --shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+          Roboto, "Helvetica Neue", Arial;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0b1220;
+          --card: #071022;
+          --muted: #9aa4b2;
+          --accent: #fb7185;
+          --glass: rgba(255, 255, 255, 0.02);
+          --accent-2: #d1d5db;
+        }
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        background: linear-gradient(
+          180deg,
+          #1e293b 0%,
+          #334155 50%,
+          #0f172a 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        color: var(--accent-2);
+      }
+
+      .container {
+        width: 100%;
+        max-width: 920px;
+        display: flex;
+        gap: 28px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .card {
+        background: rgba(15, 23, 42, 0.72); /* dark glass */
+        border-radius: var(--radius);
+        box-shadow: 0 30px 70px rgba(2, 6, 23, 0.45);
+        padding: 28px;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        width: 100%;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+      }
+
+      .illustration {
+        flex: 0 0 160px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .illustration svg {
+        width: 120px;
+        height: 120px;
+        display: block;
+      }
+
+      .content {
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+
+      h1 {
+        margin: 0 0 8px 0;
+        font-size: 20px;
+        line-height: 1.1;
+        color: #f8fafc;
+        font-weight: 800;
+      }
+      p {
+        margin: 0 0 14px 0;
+        color: #e2e8f0;
+        font-size: 14px;
+      }
+
+      .details {
+        background: rgba(255, 255, 255, 0.04);
+        padding: 12px 14px;
+        border-radius: 10px;
+        font-size: 13px;
+        color: #cbd5e1;
+        margin-bottom: 16px;
+        overflow: auto;
+        max-height: 120px;
+      }
+
+      .actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        appearance: none;
+        border: 0;
+        padding: 10px 16px;
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 14px;
+        transition: transform 0.12s ease, box-shadow 0.12s ease;
+        box-shadow: 0 6px 18px rgba(2, 6, 23, 0.06);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .btn:active {
+        transform: translateY(1px);
+      }
+      .btn:focus {
+        outline: 3px solid rgba(59, 130, 246, 0.14);
+        outline-offset: 3px;
+      }
+
+      .btn-primary {
+        background: linear-gradient(180deg, var(--accent), #e11d48);
+        color: white;
+      }
+
+      .btn-secondary {
+        background: transparent;
+        border: 1px solid rgba(2, 6, 23, 0.06);
+        color: var(--accent-2);
+      }
+
+      .hint {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      /* small screens: stack */
+      @media (max-width: 720px) {
+        .container {
+          padding: 0 6px;
+        }
+        .card {
+          flex-direction: column;
+          align-items: stretch;
+          padding: 18px;
+        }
+        .illustration {
+          flex: 0 0 auto;
+          margin: 0 auto;
+        }
+        .details {
+          max-height: none;
+        }
+        h1 {
+          font-size: 18px;
+        }
+      }
+
+      /* helper: subtle shake for attention */
+      @keyframes pulseShake {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-4px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+      .attention {
+        animation: pulseShake 900ms ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container" role="main">
+      <article
+        class="card"
+        aria-labelledby="errTitle"
+        aria-describedby="errDesc"
+        role="alert"
+      >
+        <div class="illustration" aria-hidden="true">
+          <!-- friendly robot / lock error -->
+          <svg
+            viewBox="0 0 64 64"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-label="Access denied icon"
+          >
+            <defs>
+              <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#ffdede" />
+                <stop offset="1" stop-color="#ffe8e8" />
+              </linearGradient>
+            </defs>
+            <rect
+              x="6"
+              y="10"
+              width="52"
+              height="40"
+              rx="8"
+              fill="url(#g)"
+              stroke="#ffd1d1"
+              stroke-width="1.5"
+            />
+            <path d="M20 26h24v2H20z" fill="#fff" opacity="0.6" />
+            <circle cx="32" cy="34" r="6" fill="#fff" />
+            <path
+              d="M28 36l8-8"
+              stroke="#ef4444"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M28 28l8 8"
+              stroke="#ef4444"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+
+        <div class="content">
+          <h1 id="errTitle">Authentication failed — user not found in ERP</h1>
+          <p id="errDesc">
+            We couldn't find an account matching those credentials. This usually
+            means the username/email or password is incorrect, or your account
+            is not registered with this ERP.
+          </p>
+
+          <div class="details" role="note" aria-live="polite">
+            <strong>What happened:</strong>
+            <ul style="margin: 8px 0 0 18px; padding: 0">
+              <li>
+                Login attempt blocked because user identity could not be
+                verified.
+              </li>
+              <li>
+                If you recently joined, your account might still be pending
+                activation.
+              </li>
+              <li>Company-specific accounts must be created by your admin.</li>
+            </ul>
+          </div>
+
+          <div class="actions">
+            <button
+              class="btn btn-primary"
+              id="goHome"
+              aria-label="Return to home page"
+            >
+              Go to Home
+            </button>
+            <a class="btn btn-secondary" href="/help/login" id="helpLink"
+              >Troubleshoot login</a
+            >
+            <span class="hint" style="align-self: center"
+              >Need help? Contact your administrator.</span
+            >
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <script>
+      (function () {
+        const btn = document.getElementById("goHome");
+        const details = document.querySelector(".details");
+
+        // optional: if server returns a non-sensitive error token, we can show it for support.
+        // e.g. ?err=INVALID_USER
+        const params = new URLSearchParams(location.search);
+        const err = params.get("err");
+        if (err) {
+          const el = document.createElement("div");
+          el.style.marginTop = "10px";
+          el.style.fontSize = "13px";
+          el.textContent = "Error code: " + err;
+          details.appendChild(el);
+        }
+
+        btn.addEventListener("click", function () {
+          // accessible focus management before redirect
+          btn.setAttribute("aria-disabled", "true");
+          btn.style.opacity = "0.95";
+          // use location.assign so browser history behaves as expected
+          location.assign("/");
+        });
+
+        // keyboard shortcut: press H to go home
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "h" || e.key === "H") {
+            btn.focus();
+            btn.click();
+          }
+        });
+
+        // small visual emphasis
+        setTimeout(() => {
+          document.querySelector(".card").classList.add("attention");
+        }, 120);
+      })();
+    </script>
+  </body>
+</html>

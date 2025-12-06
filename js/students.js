@@ -44,7 +44,7 @@ function renderStudents(list) {
   list.forEach((s) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td><img src="${
+      <td><img class="student-img" src="${
         s.student_image || "admin/assets/icons/profile.png"
       }" onerror="this.src='admin/assets/icons/profile.png'"></td>
       <td><a href="/student-profile.html?id=${s.id}">${s.student_name}</a></td>
